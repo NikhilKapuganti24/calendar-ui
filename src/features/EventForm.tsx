@@ -522,7 +522,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
-import { commonApi } from './services/api';
+import { commonApi } from '../services/api';
 
 interface Email {
   address: string;
@@ -591,7 +591,7 @@ const EventForm = () => {
         await commonApi.post(`/create/event`, data);
         alert('Event created successfully');
       }
-      navigate('/events'); // Redirect to events page
+     navigate('/events'); // Redirect to events page
     } catch (error) {
       console.error('Error creating/updating event:', error);
       alert('Failed to create/update event');

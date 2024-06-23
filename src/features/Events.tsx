@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { commonApi } from './services/api';
+import { commonApi } from '../services/api';
 import { useNavigate } from 'react-router-dom';
-import Table from './components/Table';
+import Table from '../components/Table';
 
 const Events= () => {
   const [events, setAllEvents] = useState([]);
