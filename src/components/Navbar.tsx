@@ -11,10 +11,10 @@ const Navbar = () => {
   const showLogout = () => {
     setShowBlock(!showBlock);
   };
-  // const handleLogout = () => {
-  //   localStorage.removeItem('token');
-  //   window.location.href = '/'
-  // }
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/'
+  }
   return (
     <div className="navbarStyling">
       <div className='flex justify-center items-center'>
@@ -29,7 +29,7 @@ const Navbar = () => {
         </div>
         {showBlock && (
           <div className="absolute  py-1 bg-white rounded-lg shadow-2xl  bordercolor card" style={{ marginTop: '12px', right: 0 }}>
-            <div className="flex block px-4 py-2 text-gray-800 cursor-pointer wrapper" >
+            <div className="flex block px-4 py-2 text-gray-800 cursor-pointer wrapper"  onClick={handleLogout}>
               <div className="logout-text">Logout</div>
             </div>
           </div>

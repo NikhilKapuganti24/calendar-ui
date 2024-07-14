@@ -63,9 +63,9 @@ const Router = () => {
           </ProtectedRoute>
         } />
         <Route path="/events" element={
-          <ProtectedRoute>
+          // <ProtectedRoute>
             <Events />
-          </ProtectedRoute>
+          // </ProtectedRoute>
         } />
         <Route path="/token" element={
           // <ProtectedRoute>
@@ -82,7 +82,7 @@ const Router = () => {
             <EventForm />
           </ProtectedRoute>
         } />
-        <Route path="*" element={<Navigate to="/events" />} /> {/* Redirect to default authenticated route */}
+        <Route path="*" element={<Navigate to="/token" />} /> {/* Redirect to default authenticated route */}
       </Route>
     </Routes>
   );

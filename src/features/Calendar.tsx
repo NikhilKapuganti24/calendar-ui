@@ -59,6 +59,7 @@ const MyCalendar = () => {
       title: event.description,
       start: new Date(event.startDate),
       end: new Date(event.endDate),
+      url:event.redirectUrl,
       allDay: false, // or true if events should be shown as all-day events
     }));
   };
@@ -68,7 +69,8 @@ const MyCalendar = () => {
       navigate('/eventform', { state: { startDate: slotInfo.start } });
     };
     const handleEventClick = (event:any) => {
-      navigate(`/event/${event.id}/edit`);
+      console.log("bhdbhjS",event)
+      window.open(event.url, '_blank');
     };
   
 

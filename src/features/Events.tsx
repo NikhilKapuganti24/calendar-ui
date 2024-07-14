@@ -43,6 +43,7 @@ const Events= () => {
       }
     };
   useEffect(() => {
+    console.log("jdkfnbhjdshb")
     fetchToken()
     fetchEvents();
   }, []);
@@ -72,7 +73,7 @@ const Events= () => {
         </div>
        
       </div>
-      <div className='card p-3'>
+      <div className='p-3'>
       <Table
         data={events}
         columns={[

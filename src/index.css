@@ -27,8 +27,8 @@
 
 
 .pagination .active {
-  background-color:  #315E7F ;
-  border:1px solid  #315E7F ;
+  background-color:  #152a43 ;
+  border:1px solid  #152a43 ;
   color: white;
   padding: 3px 5px;
   border-radius: 4px;
@@ -51,7 +51,7 @@ hr {
 }
 
 .btnprimary {
-  @apply bg-blue text-custom-white rounded font-bold text-sm p-4 leading-3 cursor-pointer;
+  @apply bg-custom-black text-custom-white rounded font-bold text-sm p-4 leading-3 cursor-pointer;
 }
 
 .is-invalid {
@@ -92,7 +92,7 @@ hr {
 }
 
 .custom-table th {
-  background: #315E7F;
+background: #152a43;
   cursor: default;
   display: table-cell;
   font-size: 13px;
@@ -124,7 +124,7 @@ hr {
 .navbarStyling{
   height: 80px;
   padding: 20px;
-  background: linear-gradient(90deg, #49BBB9 0%, #253163 100%);
+  background: linear-gradient(90deg, #49BBB9 0%, #152a43 100%);
   display: flex;
   justify-content: space-between;
 
