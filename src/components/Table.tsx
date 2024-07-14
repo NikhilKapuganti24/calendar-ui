@@ -127,7 +127,7 @@ const Table = <T extends { learningStatus: any; _id: string }>({
                 />
                 
                 {activeEditId === item._id && (
-                  <div ref={editBlockRef} className="absolute edit-block py-2 px-4 bg-white rounded-lg shadow-2xl bordercolor card" style={{ top: '100%', right: '0', zIndex: 10 }}>
+                  <div ref={editBlockRef} className="mt-2 absolute edit-block py-2 px-4 bg-white rounded-lg shadow-2xl bordercolor card" style={{ top: '100%', right: '0', zIndex: 10 }}>
                     <div className="flex block px-4 py-2 text-gray-800 cursor-pointer wrapper" onClick={() => { onEdit(item._id); setActiveEditId(null); }}>
                       <div className="logout-text">Edit</div>
                     </div>

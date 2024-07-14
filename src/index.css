@@ -1,9 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+
 .root{
   background: linear-gradient(90deg, #49BBB9 0%, #253163 100%);
   height: 100vh
@@ -13,24 +12,25 @@
   background-color: #f3f4f6;
   height: 100vh;
 }
-.card{
-border:none
-}
-.logincard{
-  background-color: #ffffff;
-  padding: 5px;
-  cursor: pointer;
-}
 .pagination{
   display: flex;
     justify-content: flex-end;
 }
+.card{
+  border:none
+  }
+  .logincard{
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+  }
 
 
 .pagination .active {
-  background-color:  #88E9E8 ;
-  border:1px solid  #88E9E8 ;
+  background-color:  #315E7F ;
+  border:1px solid  #315E7F ;
   color: white;
+  padding: 3px 5px;
   border-radius: 4px;
 }
 
@@ -44,16 +44,14 @@ hr {
   @apply border-t border-gray-300;
 }
 
-.nav {
-  @apply text-xs font-semibold;
-}
+
 
 .card {
   @apply bg-white rounded-xl border border-gray-300 transition-all duration-300 ease-in-out cursor-pointer;
 }
 
 .btnprimary {
-  @apply bg-custom-black text-custom-white rounded font-bold text-sm p-4 leading-3 cursor-pointer;
+  @apply bg-blue text-custom-white rounded font-bold text-sm p-4 leading-3 cursor-pointer;
 }
 
 .is-invalid {
@@ -123,48 +121,78 @@ hr {
 .custom-table tbody tr:last-child td:last-child {
   border-bottom-right-radius: 8px;
 }
+.navbarStyling{
+  height: 80px;
+  padding: 20px;
+  background: linear-gradient(90deg, #49BBB9 0%, #253163 100%);
+  display: flex;
+  justify-content: space-between;
 
-/* hr{
-  color: rgb(211, 211, 211);
-  border-top-width: 1px;
+  box-shadow: 0px 4px 20px 0px #0000001A;
+
 }
-.nav{
-  font-size: 12px;
-  font-weight: 600;
+
+.custom-hr {
+  border: 1px solid #ffffff !important;
+  height: 40px;
+  margin-left: 4px;
+  
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+  padding: 20px;
+  overflow: hidden; /* Ensure that content doesn't overflow */
+}
+
+.sidenav {
+  width: 16rem;
+  flex: 0 0 16rem; /* Ensure fixed width for side menu */
+  background: #FFFFFF;
+  box-shadow: 0px 2px 12px 0px #0000001A;
+  border-radius: 8px;
+  z-index: 100; /* Ensure the side menu appears above the content */
+}
+.outletcard {
+  flex-grow: 1; /* Allow the content to take up remaining space */
+  margin-left: 20px; /* Add space between sidemenubar and outlet */
+  padding: 20px;
+  background-color: #ffffff; /* Background color for the outlet content */
+  box-shadow: 0px 2px 12px 0px #0000001A;
+  border-radius: 5px; /* Rounded corners for outlet */
 }
 
 
-      
-      .card {
-        transition: all 0.3s ease; 
-        cursor: pointer;
-      }
-      
 
-	  card {
-		background-color: white;
-		border-radius: 15px !important;
-		border: 1px solid #E9E9E9;
-		height: 350px;
-	   
-	  
-	  }
-	  
-	  .btnprimary {
-		@apply bg-custom-black rounded  font-bold text-sm p-4 text-custom-white leading-3 cursor-pointer
-	  
-	  }
-	  .inputboxstyling {
-		@apply block w-full px-2 py-2 text-sm font-light text-custom-gray bg-white rounded-sm border-solid border border-custom-lightgrey
-	  }
-	  
-	  
-	  .is-invalid {
-		@apply border-solid border border-custom-error !important
-		
-	  }
-      .invalid-feedback{
-        color:red !important
-      } */
-	  
-	  
+.content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+/* Card styling inside the login container */
+.card {
+  border: none;
+  box-shadow: 0px 2px 12px 0px #0000001A;
+  border-radius: 8px;
+  padding: 16px; /* Ensure padding inside the card */
+}
+
+
+
