@@ -2123,7 +2123,7 @@ const EventForm = () => {
   };
 
   const removeDriveFile = (fileId: string) => {
-    const updatedDriveFiles = watch('driveFiles')?.filter((file: any) => file.id !== fileId);
+    const updatedDriveFiles = watch('driveFiles')?.filter((file: GooglePickerFile) => file.id !== fileId);
     setValue('driveFiles', updatedDriveFiles);
   };
 
@@ -2151,6 +2151,7 @@ const EventForm = () => {
 
   const onSubmit = async (data: Event) => {
     try {
+      console.log("sjbkdbsdbh",data)
       const formData = new FormData();
       formData.append('name', data.name);
       formData.append('summary', data.summary);
@@ -2164,16 +2165,15 @@ const EventForm = () => {
         formData.append(`emails[${index}][address]`, email.address);
       });
 
-      fileList.forEach(file => {
-        formData.append('files', file);
-      });
+    // Append local files
+    fileList.forEach(file => {
+      formData.append('files', file);
+    });
 
-      data.driveFiles?.forEach((file, index) => {
-        formData.append(`driveFiles[${index}][id]`, file.id);
-        formData.append(`driveFiles[${index}][name]`, file.name);
-        formData.append(`driveFiles[${index}][webViewLink]`, file.webViewLink);
-      });
-
+    // Append Google Drive file IDs
+    data.driveFiles?.forEach((file, index) => {
+      formData.append(`driveFileId`, file.id);
+    });
       const config = { headers: { 'Content-Type': 'multipart/form-data' } };
 
       if (action) {
@@ -2214,105 +2214,25 @@ const EventForm = () => {
     picker.setVisible(true);
 
 console.log(window.google.picker.Feature.MULTISELECT_ENABLED)
-
-//     const picker = new window.google.picker.PickerBuilder()
-//   .addView(window.google.picker.ViewId.DOCS)
-//   .setOAuthToken(oauthToken)
-//   .setDeveloperKey(developerKey)
-//   .setCallback(pickerCallback)
-//   .enableFeature(window.google.picker.Feature.MULTISELECT_ENABLED)
-//   .build();
-// picker.setVisible(true);
-
-  };
-
-  // const pickerCallback = (data: any) => {
-  //   console.log('Picker callback data:', data);
-
-  //   if (data[window.google.picker.Response.ACTION] === window.google.picker.Action.PICKED) {
-  //     const files = data[window.google.picker.Response.DOCS] || [];
-
-  //     if (Array.isArray(files)) {
-  //       const newFiles = files.map((file: any) => ({
-  //         id: file.id,
-  //         name: file.name,
-  //         webViewLink: file[window.google.picker.DocumentProperties.VIEW_URL],
-  //       }));
-
-  //       setValue('driveFiles', (prevDriveFiles:any )=> {[...prevDriveFiles, ...newFiles]});
-  //     } else {
-  //       console.error('Unexpected data structure:', files);
-  //     }
-  //   }
-  // };
-  // const pickerCallback = (data: any) => {
-  //   console.log('Picker callback data:', data);
-  
-  //   if (data[window.google.picker.Response.ACTION] === window.google.picker.Action.PICKED) {
-  // //     const files = data[window.google.picker.Response.DOCS]  
-  // //  as Array<{
-  // //       id: string;
-  // //       name: string;
-  // //       [key: string]: any; // Allows for extra properties
-  // //     }> || [];
-  // const files = data[window.google.picker.Response.DOCS] || [];
-  
-  //     if (Array.isArray(files)) {
-  //       const newFiles: GooglePickerFile[] = files.map((file) => ({
-  //         id: file.id,
-  //         name: file.name,
-  //         webViewLink: file[window.google.picker.DocumentProperties.VIEW_URL] || '',
-  //       }));
-  
-  //       // setValue('driveFiles', (prevDriveFiles: GooglePickerFile[] | undefined) => {
-  //       //   return [...(prevDriveFiles || []), ...newFiles] as GooglePickerFile[];
-  //       // });
-  //       // setValue('driveFiles', [...(prevDriveFiles || []), ...newFiles]);
-  //       setValue('driveFiles', [...newFiles]);
-  //     } else {
-  //       console.error('Unexpected data structure:', files);
-  //     }
-  //   }
-  // };
-  
-  // const pickerCallback = (data: any) => {
-  //   console.log('Picker callback data:', data);
-  
-  //   if (data[window.google.picker.Response.ACTION] === window.google.picker.Action.PICKED) {
-  //     const files = data[window.google.picker.Response.DOCS]   
-  //  || [];
-  
-  //     if (Array.isArray(files)) {
-  //       const newFiles: GooglePickerFile[] = files.map((file) => ({
-  //         id: file.id,
-  //         name: file.name,
-  //         webViewLink: file[window.google.picker.DocumentProperties.VIEW_URL] || '',
-  //       }));
-  
-  //       // Update the form state directly with the array of files
-  //       setValue('driveFiles', newFiles);
-  //     } else {
-  //       console.error('Unexpected data structure:', files);
-  //     }
-  //   }
-  // };
-
+  }
  
   const pickerCallback = (data: any) => {
+    console.log("sdbndnsjzbjdajdriver")
     if (data[window.google.picker.Response.ACTION] === window.google.picker.Action.PICKED) {
-      const files = data.docs
-   || [];
-  
+      const files = data[window.google.picker.Response.DOCUMENTS] || [];
+      
       if (Array.isArray(files)) {
         const newFiles: GooglePickerFile[] = files.map((file: any) => ({
           id: file.id,
           name: file.name,
           webViewLink: file.url || '',
         }));
-  
-        // Update selectedDriveFiles state efficiently
-        setSelectedDriveFiles((prevFiles) => [...prevFiles, ...newFiles]); // Use spread operator for efficient concatenation
-        console.log("selectedDriveFiles", selectedDriveFiles);
+        
+        // Update the form state with the new files
+        const currentDriveFiles = watch('driveFiles') || [];
+        setValue('driveFiles', [...currentDriveFiles, ...newFiles]);
+        
+        console.log("Updated Drive Files:", watch('driveFiles'));
       } else {
         console.error('Unexpected data structure:', files);
       }
@@ -2329,16 +2249,6 @@ console.log(window.google.picker.Feature.MULTISELECT_ENABLED)
       document.body.appendChild(script);
     };
 
-    // const onAuthApiLoad = () => {
-    //   window.gapi.auth.authorize(
-    //     {
-    //       client_id: clientId,
-    //       scope: ['https://www.googleapis.com/auth/drive.file'],
-    //       immediate: false,
-    //     },
-    //     handleAuthResult
-    //   );
-    // };
     const onAuthApiLoad = () => {
       window.gapi.auth.authorize(
         {
@@ -2476,20 +2386,22 @@ console.log(window.google.picker.Feature.MULTISELECT_ENABLED)
 
           <div className="mt-4">
             <h3 className="text-sm font-medium text-gray-700">Attached Files:</h3>
-            <ul>
-              {fileList.map((file, index) => (
-                <li key={index} className="text-sm text-gray-700 flex justify-between items-center">
-                  {file.name}
-                  <button
-                    type="button"
-                    className="ml-4 p-1 bg-red-500 text-white rounded"
-                    onClick={() => removeFile(file.name)}
-                  >
-                    Remove
-                  </button>
-                </li>
-              ))}
-            </ul>
+            <h3 className="text-sm font-medium text-gray-700 mt-4">Attached Drive Files:</h3>
+  <ul>
+    {watch('driveFiles')?.map((file: GooglePickerFile, index: number) => (
+      <li key={`drive-file-${index}`} className="text-sm text-gray-700 flex justify-between items-center">
+        {file.name}
+        <a href={file.webViewLink} target="_blank" rel="noopener noreferrer" className="ml-4 text-blue-500">View</a>
+        <button
+          type="button"
+          className="ml-4 p-1 bg-red-500 text-white rounded"
+          onClick={() => removeDriveFile(file.id)}
+        >
+          Remove
+        </button>
+      </li>
+    ))}
+  </ul>
 
             <h3 className="text-sm font-medium text-gray-700 mt-4">Attached Drive Files:</h3>
             <ul>
