@@ -21,8 +21,8 @@ const Login = () => {
       console.error("Environment variables are not set correctly.");
       return;
     }
-    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}&access_type=offline&include_granted_scopes=true`;
-
+    // const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}&access_type=offline&include_granted_scopes=true`;
+const authUrl=`http://localhost:4010/auth`
     window.location.href = authUrl;
   };
   
