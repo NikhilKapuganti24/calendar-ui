@@ -43,6 +43,7 @@ import EventForm from '../features/EventForm';
 import Events from '../features/Events';
 import Login from '../features/Login';
 import Calendar from '../features/Calendar';
+import Register from '../features/Register'
 import ProtectedRoute from './ProtectedRoute'; // Import the ProtectedRoute component
 
 const Router = () => {
@@ -75,6 +76,11 @@ const Router = () => {
         <Route path="/calendar" element={
           <ProtectedRoute>
             <Calendar />
+          </ProtectedRoute>
+        } />
+           <Route path="/register" element={
+          <ProtectedRoute>
+            <Register />
           </ProtectedRoute>
         } />
         <Route path="/event/:eventId/edit" element={

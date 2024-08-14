@@ -6,6 +6,14 @@ const SideMenuBar = () => {
 
     const menus = [
         {
+        
+            optionRoute: '/register',
+            displayOptionName: 'Home',
+            activeImage: '/images/usercolored.png',
+            inactiveImage: '/images/user.png'
+        
+    },
+        {
             optionRoute: '/calendar',
             displayOptionName: 'Calendar',
             activeImage: '/images/learnercolored.png',
@@ -17,6 +25,7 @@ const SideMenuBar = () => {
             activeImage: '/images/usercolored.png',
             inactiveImage: '/images/user.png'
         },
+       
     ];
 
 

@@ -70,7 +70,7 @@ const MyCalendar = () => {
     };
     const handleEventClick = (event:any) => {
       console.log("bhdbhjS",event)
-      window.open(event.url, '_blank');
+      navigate(`/event/${event.id}/edit`)
     };
   
 
